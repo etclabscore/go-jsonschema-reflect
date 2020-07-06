@@ -1,8 +1,8 @@
 {
-  "$schema": "http:\/\/json-schema.org\/draft-04\/schema#",
-  "$ref": "#\/definitions\/TestUser",
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "$ref": "#/definitions/github.com/alecthomas/jsonschema.TestUser",
   "definitions": {
-    "GrandfatherType": {
+    "github.com/alecthomas/jsonschema.GrandfatherType": {
       "required": [
         "family_name"
       ],
@@ -11,10 +11,10 @@
           "type": "string"
         }
       },
-      "additionalProperties": true,
+      "additionalProperties": false,
       "type": "object"
     },
-    "TestUser": {
+    "github.com/alecthomas/jsonschema.TestUser": {
       "required": [
         "some_base_property",
         "some_base_property_yaml",
@@ -37,8 +37,8 @@
           "type": "integer"
         },
         "grand": {
-          "$schema": "http:\/\/json-schema.org\/draft-04\/schema#",
-          "$ref": "#\/definitions\/GrandfatherType"
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "$ref": "#/definitions/github.com/alecthomas/jsonschema.GrandfatherType"
         },
         "SomeUntaggedBaseProperty": {
           "type": "boolean"
@@ -108,7 +108,7 @@
             }
           ]
         },
-        "age":{
+        "age": {
           "maximum": 120,
           "exclusiveMaximum": true,
           "minimum": 18,
@@ -152,7 +152,7 @@
           "type": "number"
         }
       },
-      "additionalProperties": true,
+      "additionalProperties": false,
       "type": "object"
     }
   }

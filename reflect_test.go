@@ -81,7 +81,7 @@ type TestUser struct {
 	Email   string    `json:"email" jsonschema:"format=email"`
 
 	// Test for "extras" support
-	Baz string `jsonschema_extras:"foo=bar,hello=world"`
+	Baz string `jsonschema_extras:"foo=bar,hello=world,foo=bar1"`
 
 	// Tests for simple enum tags
 	Color      string  `json:"color" jsonschema:"enum=red,enum=green,enum=blue"`
@@ -178,6 +178,9 @@ func TestSchemaGeneration(t *testing.T) {
 		{&TestUser{}, &Reflector{RequiredFromJSONSchemaTags: true}, "fixtures/required_from_jsontags.json"},
 		{&TestUser{}, &Reflector{ExpandedStruct: true}, "fixtures/defaults_expanded_toplevel.json"},
 		{&TestUser{}, &Reflector{IgnoredTypes: []interface{}{GrandfatherType{}}}, "fixtures/ignore_type.json"},
+		{&TestUser{}, &Reflector{DoNotReference: true}, "fixtures/no_reference.json"},
+		{&TestUser{}, &Reflector{FullyQualifyTypeNames: true}, "fixtures/fully_qualified.json"},
+		{&TestUser{}, &Reflector{DoNotReference: true, FullyQualifyTypeNames: true}, "fixtures/no_ref_qual_types.json"},
 		{&CustomTypeField{}, &Reflector{
 			TypeMapper: func(i reflect.Type) *Type {
 				if i == reflect.TypeOf(CustomTime{}) {
